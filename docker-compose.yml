@@ -9,13 +9,19 @@ services:
       MYSQL_USER: oneday
       MYSQL_PASSWORD: oneday
     ports:
-      - 3306:3306
+      - 3307:3306
     command: 
       mysqld --character-set-server=utf8mb4 
       --collation-server=utf8mb4_unicode_ci 
       --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - oneday-network
 
 volumes:
   mysql_data:
+
+networks:
+    oneday-network:
+        external: true
